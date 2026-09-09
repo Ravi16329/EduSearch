@@ -1,0 +1,430 @@
+/* ---------------------------------------------------------------------
+   EduSearch design tokens
+   Concept: a "study desk" worksheet — ruled paper, chalkboard indigo,
+   a single highlighter-gold accent used only for scores/ranks.
+   --------------------------------------------------------------------- */
+:root {
+  --ink: #1B2430;
+  --ink-soft: #4A5568;
+  --paper: #F6F5F0;
+  --paper-raised: #FFFFFF;
+  --rule: #DCD8C9;
+  --indigo: #2B3A67;
+  --indigo-deep: #1F2B4D;
+  --highlighter: #F2B705;
+  --highlighter-soft: #FCE8A8;
+  --coral: #B23B32;
+  --coral-soft: #F5DCD8;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  --radius: 3px;
+  --max-width: 880px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--indigo);
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.app-shell {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4) var(--space-8);
+}
+
+.app-header {
+  margin-bottom: var(--space-6);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: var(--space-5);
+}
+
+.app-header h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.25rem;
+  margin: 0 0 var(--space-2);
+  letter-spacing: -0.01em;
+  color: var(--indigo-deep);
+}
+
+.app-header p {
+  margin: 0;
+  color: var(--ink-soft);
+  max-width: 56ch;
+}
+
+/* ---------------------------------------------------------------------
+   Search bar
+   --------------------------------------------------------------------- */
+.search-form {
+  display: grid;
+  grid-template-columns: minmax(120px, 160px) 1fr minmax(120px, 160px) auto;
+  gap: var(--space-3);
+  align-items: end;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  padding: var(--space-5);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.field label {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.field select,
+.field input {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+  color: var(--ink);
+}
+
+.field select:focus,
+.field input:focus {
+  border-color: var(--indigo);
+}
+
+.search-submit {
+  background: var(--indigo);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: var(--space-3) var(--space-5);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+.search-submit:hover {
+  background: var(--indigo-deep);
+}
+
+.search-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 720px) {
+  .search-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Section headings
+   --------------------------------------------------------------------- */
+.section {
+  margin-top: var(--space-7);
+}
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.section-heading h2 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--indigo-deep);
+}
+
+.ranking-note {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin: 0;
+  max-width: 34ch;
+  text-align: right;
+}
+
+/* ---------------------------------------------------------------------
+   Best video card (hero pick)
+   --------------------------------------------------------------------- */
+.best-video-card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-6);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  padding: var(--space-5);
+}
+
+.best-video-card__player {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--indigo-deep);
+  overflow: hidden;
+}
+
+.best-video-card__player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.best-video-card__meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.pick-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--indigo);
+}
+
+.pick-eyebrow .score-badge {
+  background: var(--highlighter-soft);
+  color: var(--ink);
+  border-radius: 2px;
+  padding: 1px 6px;
+  font-weight: 700;
+}
+
+.best-video-card__meta h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.best-video-card__meta .channel {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.best-video-card__stats {
+  display: flex;
+  gap: var(--space-4);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: var(--space-2);
+}
+
+@media (max-width: 720px) {
+  .best-video-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Line-wise lists (video alternatives + articles)
+   --------------------------------------------------------------------- */
+.line-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.line-item {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: var(--space-4);
+  align-items: start;
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.line-item:first-child {
+  padding-top: 0;
+}
+
+.line-item:last-child {
+  border-bottom: none;
+}
+
+.line-item__rank {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--rule);
+  font-weight: 600;
+}
+
+.line-item__body h4 {
+  margin: 0 0 var(--space-1);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.line-item__body a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.line-item__body a:hover {
+  color: var(--indigo);
+  text-decoration: underline;
+}
+
+.line-item__sub {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.line-item__snippet {
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  margin: var(--space-1) 0 0;
+  line-height: 1.5;
+}
+
+.line-item__source {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--indigo);
+  background: #EDEFF7;
+  padding: 1px 6px;
+  border-radius: 2px;
+  margin-bottom: var(--space-1);
+}
+
+.line-item__score {
+  text-align: right;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.line-item__score strong {
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 560px) {
+  .line-item {
+    grid-template-columns: 24px 1fr;
+  }
+  .line-item__score {
+    grid-column: 2;
+    text-align: left;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Loading skeleton
+   --------------------------------------------------------------------- */
+.skeleton {
+  background: linear-gradient(90deg, #EDEBE3 25%, #F6F5F0 37%, #EDEBE3 63%);
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+  border-radius: var(--radius);
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+.skeleton-hero {
+  height: 260px;
+  margin-bottom: var(--space-5);
+}
+
+.skeleton-line {
+  height: 64px;
+  margin-bottom: var(--space-3);
+}
+
+/* ---------------------------------------------------------------------
+   Empty / error states
+   --------------------------------------------------------------------- */
+.state-panel {
+  border: 1px dashed var(--rule);
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+.state-panel.state-panel--error {
+  border-color: var(--coral);
+  background: var(--coral-soft);
+  color: var(--coral);
+}
+
+.state-panel h3 {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: inherit;
+}
+
+.state-panel p {
+  margin: 0;
+}
+
+.cache-badge {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  margin-top: var(--space-2);
+}
