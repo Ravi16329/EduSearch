@@ -1,7 +1,12 @@
-import axios from 'axios';
+import axios from "axios";
+
+// If deployed (GitHub Pages) → use Render backend.
+// If local (npm run dev) → use Vite proxy (/api).
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "/api";
 
 const client = axios.create({
-  baseURL: '/api',
+  baseURL: API_BASE_URL,
   timeout: 20000,
 });
 
@@ -11,18 +16,24 @@ const client = axios.create({
  */
 export async function fetchSearchResults({ topic, subject, lang }) {
   try {
-    const { data } = await client.get('/search', { params: { topic, subject, lang } });
+    const { data } = await client.get("/search", {
+      params: { topic, subject, lang },
+    });
+
     return { data, error: null };
   } catch (err) {
     if (err.response && err.response.data) {
-      // Clean JSON error shape from GlobalExceptionHandler: { error, message, source, timestamp }
-      return { data: null, error: err.response.data };
+      return {
+        data: null,
+        error: err.response.data,
+      };
     }
+
     return {
       data: null,
       error: {
-        error: 'NETWORK_ERROR',
-        message: 'Could not reach the server. Check your connection and try again.',
+        error: "NETWORK_ERROR",
+        message: "Could not reach the server. Check your connection and try again.",
       },
     };
   }
