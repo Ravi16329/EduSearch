@@ -36,7 +36,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -365,6 +366,7 @@ button {
   .line-item {
     grid-template-columns: 24px 1fr;
   }
+
   .line-item__score {
     grid-column: 2;
     text-align: left;
@@ -382,8 +384,13 @@ button {
 }
 
 @keyframes skeleton-shimmer {
-  0% { background-position: 100% 50%; }
-  100% { background-position: 0 50%; }
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
 }
 
 .skeleton-hero {
@@ -427,4 +434,23 @@ button {
   font-size: 0.75rem;
   color: var(--ink-soft);
   margin-top: var(--space-2);
+}
+
+
+.results-columns {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.results-column {
+  flex: 1;
+  min-width: 0;
+  /* prevents overflow with long titles/links */
+}
+
+@media (max-width: 768px) {
+  .results-columns {
+    flex-direction: column;
+  }
 }

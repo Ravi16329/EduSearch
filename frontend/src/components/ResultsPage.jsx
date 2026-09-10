@@ -62,25 +62,29 @@ export default function ResultsPage({ query }) {
         </div>
       )}
 
-      {restOfVideos.length > 0 && (
-        <div className="section">
+      <div className="results-columns">
+        <div className="results-column">
           <div className="section-heading">
             <h2>More videos on this topic</h2>
           </div>
-          <VideoList videos={restOfVideos} />
+          {restOfVideos.length > 0 ? (
+            <VideoList videos={restOfVideos} />
+          ) : (
+            <p className="ranking-note" style={{ textAlign: 'left' }}>No more videos for this topic.</p>
+          )}
         </div>
-      )}
 
-      <div className="section">
-        <div className="section-heading">
-          <h2>Top articles</h2>
-          <p className="ranking-note">{result.articleRankingNote}</p>
+        <div className="results-column">
+          <div className="section-heading">
+            <h2>Top articles</h2>
+            <p className="ranking-note">{result.articleRankingNote}</p>
+          </div>
+          {articles.length > 0 ? (
+            <ArticleList articles={articles} />
+          ) : (
+            <p className="ranking-note" style={{ textAlign: 'left' }}>No article results for this topic.</p>
+          )}
         </div>
-        {articles.length > 0 ? (
-          <ArticleList articles={articles} />
-        ) : (
-          <p className="ranking-note" style={{ textAlign: 'left' }}>No article results for this topic.</p>
-        )}
       </div>
     </div>
   );
